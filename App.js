@@ -8,7 +8,8 @@
 
 import React, {Component} from 'react';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {Platform, Alert,numColumns,ActivityIndicator,StyleSheet, FlatList,Text, Image,View,Dimensions,TextInput,TouchableOpacity} from 'react-native';
+import details from './details' ;
+import {Platform, Alert,TouchableHighlight,ActivityIndicator,StyleSheet, FlatList,Text, Image,View,Dimensions,TextInput,TouchableOpacity} from 'react-native';
 const screenWidth = Dimensions.get('window').width;
 
 export default class App extends Component{
@@ -38,6 +39,10 @@ export default class App extends Component{
     });
 
   }
+  handleFlatListItemClick=()=>{
+  this.props.navigation.navigate('details',{item});
+  }
+
   FlatListItemSeparator = () => {
     return(
       <View
@@ -50,11 +55,16 @@ export default class App extends Component{
     );
     }
   renderItem = ({item,index,separators}) =>(
+    <TouchableHighlight
+  	onPress={() => this.handleFlatListItemClick(item)}
+  	onShowUnderlay={separators.highlight}
+  	onHideUnderlay={separators.unhighlight}>
     <View style={styles.flatListItem}>
     <Image style={styles.image}
             source={{uri: item.Poster}}
         	/>
           </View>
+          </TouchableHighlight>
   );
    renderOutputUsingFlatList =()=>{
      return(
@@ -128,9 +138,9 @@ margin:10,
 borderRadius:8
   },
   image: {
-    width: 100,
+    width: 105,
     height: 150,
-    padding: 10,
+    margin:2,
     alignSelf: 'center'
   },
   flatListItem: {

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {creatStackNavigation} from 'react-navigation'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Details from './Details'
 
 import {Platform, Alert, Button, TouchableHighlight,ActivityIndicator,StyleSheet, FlatList,Text, Image,View,Dimensions,TextInput,TouchableOpacity} from 'react-native';
 const screenWidth = Dimensions.get('window').width;
